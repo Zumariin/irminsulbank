@@ -16,9 +16,9 @@ model users {
 
 model karakter {
   id               Int              @id @default(autoincrement())
-  ID_artefak       Int?
-  ID_charasup      Int?
-  ID_batu          Int?
+  ID_artefak       Int
+  ID_charasup      Int
+  ID_batu          Int
   Nama_chara       String
   Mat_ascend       String
   Gambar_mat       String
@@ -33,9 +33,9 @@ model karakter {
   Gambar_Senjata3  String
   Senjata4         String
   Gambar_Senjata4  String
-  artefak          Artefak?          @relation(fields: [ID_artefak], references: [ID_artefak], onDelete: SetNull)
-  karakter_support Karakter_Support? @relation(fields: [ID_charasup], references: [ID_charasup], onDelete: SetNull)
-  batu_ascend      Batu_ascend?      @relation(fields: [ID_batu], references: [id])
+  artefak          Artefak          @relation(fields: [ID_artefak], references: [id])
+  karakter_support Karakter_Support @relation(fields: [ID_charasup], references: [id])
+  batu_ascend      Batu_ascend      @relation(fields: [ID_batu], references: [id])
 }
 
 model Batu_ascend {
@@ -52,14 +52,14 @@ model Batu_ascend {
 }
 
 model Karakter_Support {
-  ID_charasup   Int       @id @default(autoincrement())
+  id   Int       @id @default(autoincrement())
   Nama_charasup String
   Foto_charasup String
   karakter      karakter[]
 }
 
 model Artefak {
-  ID_artefak   Int       @id @default(autoincrement())
+  id   Int       @id @default(autoincrement())
   Nama_artefak String
   Foto_artefak String
   karakter     karakter[]
