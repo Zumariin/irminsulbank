@@ -16,30 +16,30 @@ model users {
 
 model karakter {
   id               Int              @id @default(autoincrement())
-  ID_artefak       Int              @unique
-  ID_charasup      Int              @unique
-  ID_batu          Int              @unique
-  Nama_chara       String           @unique
-  Mat_ascend       String           @unique
-  Gambar_mat       String           @unique
-  Lokal_mat        String           @unique
-  gambar_lokalmat  String           @unique
+  ID_artefak       Int?
+  ID_charasup      Int?
+  ID_batu          Int?
+  Nama_chara       String
+  Mat_ascend       String
+  Gambar_mat       String
+  Lokal_mat        String
+  gambar_lokalmat  String
   Elemen           String
-  Senjata1         String           @unique
-  Gambar_Senjata1  String           @unique
-  Senjata2         String           @unique
-  Gambar_Senjata2  String           @unique
-  Senjata3         String           @unique
-  Gambar_Senjata3  String           @unique
-  Senjata4         String           @unique
-  Gambar_Senjata4  String           @unique
-  artefak          Artefak          @relation(fields: [ID_artefak], references: [ID_artefak])
-  karakter_support Karakter_Support @relation(fields: [ID_charasup], references: [ID_charasup])
-  batu_ascend      Batu_ascend      @relation(fields: [ID_batu], references: [ID_batu])
+  Senjata1         String
+  Gambar_Senjata1  String
+  Senjata2         String
+  Gambar_Senjata2  String
+  Senjata3         String
+  Gambar_Senjata3  String
+  Senjata4         String
+  Gambar_Senjata4  String
+  artefak          Artefak?          @relation(fields: [ID_artefak], references: [ID_artefak], onDelete: SetNull)
+  karakter_support Karakter_Support? @relation(fields: [ID_charasup], references: [ID_charasup], onDelete: SetNull)
+  batu_ascend      Batu_ascend?      @relation(fields: [ID_batu], references: [id])
 }
 
 model Batu_ascend {
-  ID_batu         Int       @id @default(autoincrement())
+  id              Int       @id @default(autoincrement())
   Silver          String
   Gambar_silver   String
   Fragment        String
@@ -48,19 +48,19 @@ model Batu_ascend {
   Gambar_chunk    String
   Gemstone        String
   Gambar_gemstone String
-  karakter        karakter?
+  karakter        karakter[]
 }
 
 model Karakter_Support {
   ID_charasup   Int       @id @default(autoincrement())
   Nama_charasup String
   Foto_charasup String
-  karakter      karakter?
+  karakter      karakter[]
 }
 
 model Artefak {
   ID_artefak   Int       @id @default(autoincrement())
   Nama_artefak String
   Foto_artefak String
-  karakter     karakter?
+  karakter     karakter[]
 }

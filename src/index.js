@@ -6,22 +6,57 @@ require('dotenv').config();
 const PORT = 3000
 
 const app = express()
+    .use(express.static(path.join(__dirname, '..', 'public')))
     .set('view engine', 'ejs')
     .set('views', path.join(__dirname, 'views'))
 
-    .get("/", (req, res) => {
+    .get("/irfan", (req, res) => {
         return res.json({message : 'hello irpan'})
     })
 
-    //operasi api halaman
-    .get('/karakter', async (req, res) => {
+    //halaman
+    .get("/", (req, res) => {
         try {
-            const response = await axios.get('http://localhost:3000/api/v1/karakter');
-            const data = response.data;
-            res.render('karakterdetail', { data });
+            return res.render('home');
         } catch (error) {
             console.error('Error fetching data from API:', error);
-            res.status(500).send('Error fetching data');
+            return res.status(500).send('Error fetching data');
+        }
+    })
+    .get('/character-details/name/:character', async (req, res) => {
+        try {
+            const response = await axios.get(`http://localhost:3000/api/v1/character/name/${req.params.character}`);
+            const data = response.data;
+            console.log(data)
+            return res.render('characterdetail', { data });
+        } catch (error) {
+            console.error('Error fetching data from API:', error);
+            return res.status(500).send('Error fetching data');
+        }
+    })
+
+    .get('/character-tips', async (req, res) => {
+        try {
+            return res.render('charactertips');
+        } catch (error) {
+            console.error('Error fetching data from API:', error);
+            return res.status(500).send('Error fetching data');
+        }
+    })
+    .get('/thankyou', (req, res) => {
+        try {
+            return res.render('thankyou');
+        } catch (error) {
+            console.error('Error fetching data from API:', error);
+            return res.status(500).send('Error fetching data');
+        }
+    })
+    .get("/about", (req, res) => {
+        try {
+            return res.render('aboutus');
+        } catch (error) {
+            console.error('Error fetching data from API:', error);
+            return res.status(500).send('Error fetching data');
         }
     })
     

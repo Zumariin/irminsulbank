@@ -1,5 +1,6 @@
-const { getAllKarakter } = require('../controllers/karakter.controller')
+const { getAllKarakter, findCharacter } = require('../controllers/karakter.controller')
 
 const route = require('express').Router()
-    .get('/karakter', getAllKarakter)
+    .get('/character/name/:character', findCharacter)
+    .get('/character', getAllKarakter)
 module.exports = route

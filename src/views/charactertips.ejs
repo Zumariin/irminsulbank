@@ -4,18 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Genshin Impact Character List</title>
-    <link rel="stylesheet" href="CSS file/styles3.css">
+    <link rel="stylesheet" href="/css/charactertips.css">
     <style>
-        .character-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
-        }
-        .character-item {
-            cursor: pointer;
-        }
-        .character-details {
-            display: none;
+        a {
+            text-decoration: none;
         }
     </style>
 </head>
@@ -25,8 +17,8 @@
         <nav>
             <div class="logo">IrminsulBank</div>
             <ul>
-                <li><a href="http://localhost/IrminsulBank/home.php">Home</a></li>
-                <li><a href="http://localhost/IrminsulBank/aboutus.php">About Us</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About Us</a></li>
             </ul>
         </nav>
     </header>
@@ -38,7 +30,8 @@
             <!-- Character items -->
             <div class="character-item" onclick="toggleDetails('cyno')">
                 <img src="img/Cyno.png" alt="cyno">
-                <h3>Cyno</h3>
+                <a href="http://localhost:3000/character-details/name/cyno"><h3>Cyno</h3>
+                </a>
             </div>
 
             <div class="character-item" onclick="toggleDetails('arlecchino')">
