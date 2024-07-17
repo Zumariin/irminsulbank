@@ -33,9 +33,9 @@ model karakter {
   Gambar_Senjata3  String
   Senjata4         String
   Gambar_Senjata4  String
-  artefak          Artefak          @relation(fields: [ID_artefak], references: [id])
-  karakter_support Karakter_Support @relation(fields: [ID_charasup], references: [id])
-  batu_ascend      Batu_ascend      @relation(fields: [ID_batu], references: [id])
+  artefak          Artefak?          @relation(fields: [ID_artefak], references: [id])
+  karakter_support Karakter_Support? @relation(fields: [ID_charasup], references: [id])
+  batu_ascend      Batu_ascend?     @relation(fields: [ID_batu], references: [id])
 }
 
 model Batu_ascend {
@@ -48,19 +48,19 @@ model Batu_ascend {
   Gambar_chunk    String
   Gemstone        String
   Gambar_gemstone String
-  karakter        karakter[]
+  karakter        karakter[] // No `@relation` attributes here
 }
 
 model Karakter_Support {
-  id   Int       @id @default(autoincrement())
-  Nama_charasup String
-  Foto_charasup String
-  karakter      karakter[]
+  id             Int       @id @default(autoincrement())
+  Nama_charasup  String
+  Foto_charasup  String
+  karakter       karakter[] // No `@relation` attributes here
 }
 
 model Artefak {
-  id   Int       @id @default(autoincrement())
-  Nama_artefak String
-  Foto_artefak String
-  karakter     karakter[]
+  id            Int       @id @default(autoincrement())
+  Nama_artefak  String
+  Foto_artefak  String
+  karakter      karakter[] // No `@relation` attributes here
 }
