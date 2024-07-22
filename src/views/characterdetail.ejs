@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Irminsul Bank - <%= data.data.Nama_chara %> Build & Tips</title>
+    <title>Irminsul Bank - <%= data.Nama_chara %> Build & Tips</title>
     <link rel="stylesheet" href="/css/characterdetail.css">
 </head>
 <body>
@@ -18,30 +18,27 @@
     </header>
 
     <main>
-        <h1><%= data.data.Nama_chara %> Build & Tips</h1>
+        <h1><%= data.Nama_chara %> Build & Tips</h1>
         <div class="content">
             <div class="character-image">
-                <img src="<%= data.data.Gambar_mat %>" alt="<%= data.data.Nama_chara %>">
+                <img src="<%= data.link_avatar %>" alt="<%= data.Nama_chara %>">
             </div>
             <div class="build-info">
-                <h2>Build Terbaik <%= data.data.Nama_chara %></h2>
+                <h2>Build Terbaik <%= data.Nama_chara %></h2>
                 <div class="build-details">
                     <div class="senjata">
                         <h3>Senjata Terbaik</h3>
                         <ul>
-                            <li><img src="<%= data.data.Gambar_Senjata1 %>" alt="Senjata 1" class="checkbox-image" onclick="toggleCheckbox(this)"></li>
-                            <li><img src="<%= data.data.Gambar_Senjata2 %>" alt="Senjata 2" class="checkbox-image" onclick="toggleCheckbox(this)"></li>
-                            <li><img src="<%= data.data.Gambar_Senjata3 %>" alt="Senjata 3" class="checkbox-image" onclick="toggleCheckbox(this)"></li>
-                            <li><img src="<%= data.data.Gambar_Senjata4 %>" alt="Senjata 4" class="checkbox-image" onclick="toggleCheckbox(this)"></li>
+                            <li><img src="<%= data.Gambar_Senjata1 %>" alt="Senjata 1" class="checkbox-image" onclick="toggleCheckbox(this)"></li>
+                            <li><img src="<%= data.Gambar_Senjata2 %>" alt="Senjata 2" class="checkbox-image" onclick="toggleCheckbox(this)"></li>
+                            <li><img src="<%= data.Gambar_Senjata3 %>" alt="Senjata 3" class="checkbox-image" onclick="toggleCheckbox(this)"></li>
+                            <li><img src="<%= data.Gambar_Senjata4 %>" alt="Senjata 4" class="checkbox-image" onclick="toggleCheckbox(this)"></li>
                         </ul>
                     </div>
                     <div class="artifact">
                         <h3>Artefak Terbaik</h3>
                         <ul>
-                            <li><img src="URL_GAMBAR_ARTEFAK" alt="Artefak 1" class="checkbox-image" onclick="toggleCheckbox(this)"></li>
-                            <li><img src="URL_GAMBAR_SANDS" alt="Sands" class="checkbox-image" onclick="toggleCheckbox(this)"> Sands: Bisa ditambahkan teks</li>
-                            <li><img src="URL_GAMBAR_GOBLET" alt="Goblet" class="checkbox-image" onclick="toggleCheckbox(this)"> Goblet: Bisa ditambahkan teks</li>
-                            <li><img src="URL_GAMBAR_CIRCLET" alt="Circlet" class="checkbox-image" onclick="toggleCheckbox(this)"> Circlet: Bisa ditambahkan teks</li>
+                            <li><img src="<%= data.artefak.Foto_artefak %>" alt="<%= data.artefak.Nama_artefak %>" class="checkbox-image" onclick="toggleCheckbox(this)"> <%= data.artefak.Nama_artefak %></li>
                         </ul>
                     </div>
                     <div class="substat">
@@ -50,7 +47,9 @@
                     </div>
                     <div class="rekomendasi">
                         <h3>Rekomendasi Sinergi</h3>
-                        <p>Bisa ditambahkan teks</p>
+                        <ul>
+                            <li><img src="<%= data.karakter_support.Foto_charasup %>" alt="<%= data.karakter_support.Nama_charasup %>" class="checkbox-image" onclick="toggleCheckbox(this)"> <%= data.karakter_support.Nama_charasup %></li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -60,26 +59,25 @@
             <h2>Material Ascend</h2>
             <table>
                 <tr>
-                    <th>Lv.20 ->Lv.40</th>
+                    <th>Lv.20 -> Lv.40</th>
                     <td>
                         <ul>
-                            <li><img src="URL_GAMBAR_SILVER" alt="Silver" class="checkbox-image" onclick="toggleCheckbox(this)"> Silver x1</li>
-                            <li><img src="URL_GAMBAR_MATERIAL_ASCEND_1" alt="Material ascend 1" class="checkbox-image" onclick="toggleCheckbox(this)"> Material ascend 1 x3</li>
-                            <li><img src="URL_GAMBAR_MORA" alt="Mora" class="checkbox-image" onclick="toggleCheckbox(this)"> Mora x20,000</li>
-                            <li><img src="<%= data.data.gambar_lokalmat %>" alt="Local Mat" class="checkbox-image" onclick="toggleCheckbox(this)"> Local Mat x3</li>
+                            <li><img src="<%= data.batu_ascend.Gambar_silver %>" alt="Silver" class="checkbox-image" onclick="toggleCheckbox(this)"> Silver x1</li>
+                            <li><img src="<%= data.Gambar_mat %>" alt="<%= data.Mat_ascend %>" class="checkbox-image" onclick="toggleCheckbox(this)"> <%= data.Mat_ascend %> x3</li>
+                            <li><img src="https://ik.imagekit.io/ypj908auu/img/buildcharacter/material%20icon/mora.png?updatedAt=1721124751432" alt="Mora" class="checkbox-image" onclick="toggleCheckbox(this)"> Mora x20,000</li>
+                            <li><img src="<%= data.gambar_lokalmat %>" alt="<%= data.Lokal_mat %>" class="checkbox-image" onclick="toggleCheckbox(this)"> <%= data.Lokal_mat %> x3</li>
                         </ul>
                     </td>
                 </tr>
                 <!-- Repeat for other level ranges -->
                 <tr>
-                    <th>Lv.80 ->Lv.90</th>
+                    <th>Lv.80 -> Lv.90</th>
                     <td>
                         <ul>
-                            <li><img src="URL_GAMBAR_GEMSTONE" alt="Gemstone" class="checkbox-image" onclick="toggleCheckbox(this)"> Gemstone x6</li>
-                            <li><img src="URL_GAMBAR_MATERIAL_ASCEND_3" alt="Material Ascend 3" class="checkbox-image" onclick="toggleCheckbox(this)"> Material Ascend 3 x24</li>
-                            <li><img src="URL_GAMBAR_MORA" alt="Mora" class="checkbox-image" onclick="toggleCheckbox(this)"> Mora x120,000</li>
-                            <li><img src="URL_GAMBAR_BOSS_MATERIAL" alt="Boss Material" class="checkbox-image" onclick="toggleCheckbox(this)"> Boss Material x20</li>
-                            <li><img src="<%= data.data.gambar_lokalmat %>" alt="Local Mat" class="checkbox-image" onclick="toggleCheckbox(this)"> Local Mat x60</li>
+                            <li><img src="<%= data.batu_ascend.Gambar_gemstone %>" alt="Gemstone" class="checkbox-image" onclick="toggleCheckbox(this)"> Gemstone x6</li>
+                            <li><img src="<%= data.Gambar_mat %>" alt="<%= data.Mat_ascend %>" class="checkbox-image" onclick="toggleCheckbox(this)"> <%= data.Mat_ascend %> x24</li>
+                            <li><img src="https://ik.imagekit.io/ypj908auu/img/buildcharacter/material%20icon/mora.png?updatedAt=1721124751432" alt="Mora" class="checkbox-image" onclick="toggleCheckbox(this)"> Mora x120,000</li>
+                            <li><img src="<%= data.gambar_lokalmat %>" alt="<%= data.Lokal_mat %>" class="checkbox-image" onclick="toggleCheckbox(this)"> <%= data.Lokal_mat %> x60</li>
                         </ul>
                     </td>
                 </tr>

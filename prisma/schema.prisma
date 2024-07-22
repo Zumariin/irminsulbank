@@ -19,6 +19,7 @@ model karakter {
   ID_artefak       Int
   ID_charasup      Int
   ID_batu          Int
+  link_avatar      String?
   Nama_chara       String
   Mat_ascend       String
   Gambar_mat       String

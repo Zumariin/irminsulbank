@@ -27,6 +27,11 @@ const findCharacter = async(req, res) => {
                 contains : nama,
                 mode : 'insensitive'
             }
+        },
+        include : {
+            artefak : true,
+            karakter_support : true,
+            batu_ascend : true,
         }
        })
 

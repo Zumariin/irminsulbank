@@ -28,7 +28,7 @@ const app = express()
             const response = await axios.get(`http://localhost:3000/api/v1/character/name/${req.params.character}`);
             const data = response.data;
             console.log(data)
-            return res.render('characterdetail', { data });
+            return res.render('characterdetail', { data : data.data });
         } catch (error) {
             console.error('Error fetching data from API:', error);
             return res.status(500).send('Error fetching data');
