@@ -9,7 +9,7 @@
 <body>
     <header>
         <nav>
-            <div class="logo">Irminsul Bank</div>
+            <div class="logo">IrminsulBank</div>
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="/about">About Us</a></li>
@@ -43,7 +43,7 @@
                     </div>
                     <div class="substat">
                         <h3>Substat</h3>
-                        <p>Bisa ditambahkan teks</p>
+                        <p><%= valueSubstats %></p>
                     </div>
                     <div class="rekomendasi">
                         <h3>Rekomendasi Sinergi</h3>
@@ -69,7 +69,50 @@
                         </ul>
                     </td>
                 </tr>
-                <!-- Repeat for other level ranges -->
+                <tr>
+                    <th>Lv.40 -> Lv.50</th>
+                    <td>
+                        <ul>
+                            <li><img src="<%= data.batu_ascend.Gambar_fragment %>" alt="Fragment" class="checkbox-image" onclick="toggleCheckbox(this)"> Fragment x3</li>
+                            <li><img src="<%= data.Gambar_mat %>" alt="<%= data.Mat_ascend %>" class="checkbox-image" onclick="toggleCheckbox(this)"> <%= data.Mat_ascend %> x3</li>
+                            <li><img src="https://ik.imagekit.io/ypj908auu/img/buildcharacter/material%20icon/mora.png?updatedAt=1721124751432" alt="Mora" class="checkbox-image" onclick="toggleCheckbox(this)"> Mora x20,000</li>
+                            <li><img src="<%= data.gambar_lokalmat %>" alt="<%= data.Lokal_mat %>" class="checkbox-image" onclick="toggleCheckbox(this)"> <%= data.Lokal_mat %> x3</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Lv.50 -> Lv.60</th>
+                    <td>
+                        <ul>
+                            <li><img src="<%= data.batu_ascend.Gambar_fragment %>" alt="Fragment" class="checkbox-image" onclick="toggleCheckbox(this)"> Fragment x3</li>
+                            <li><img src="<%= data.Gambar_mat %>" alt="<%= data.Mat_ascend %>" class="checkbox-image" onclick="toggleCheckbox(this)"> <%= data.Mat_ascend %> x3</li>
+                            <li><img src="https://ik.imagekit.io/ypj908auu/img/buildcharacter/material%20icon/mora.png?updatedAt=1721124751432" alt="Mora" class="checkbox-image" onclick="toggleCheckbox(this)"> Mora x20,000</li>
+                            <li><img src="<%= data.gambar_lokalmat %>" alt="<%= data.Lokal_mat %>" class="checkbox-image" onclick="toggleCheckbox(this)"> <%= data.Lokal_mat %> x3</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Lv.60 -> Lv.70</th>
+                    <td>
+                        <ul>
+                            <li><img src="<%= data.batu_ascend.Gambar_fragment %>" alt="Fragment" class="checkbox-image" onclick="toggleCheckbox(this)"> Fragment x3</li>
+                            <li><img src="<%= data.Gambar_mat %>" alt="<%= data.Mat_ascend %>" class="checkbox-image" onclick="toggleCheckbox(this)"> <%= data.Mat_ascend %> x3</li>
+                            <li><img src="https://ik.imagekit.io/ypj908auu/img/buildcharacter/material%20icon/mora.png?updatedAt=1721124751432" alt="Mora" class="checkbox-image" onclick="toggleCheckbox(this)"> Mora x20,000</li>
+                            <li><img src="<%= data.gambar_lokalmat %>" alt="<%= data.Lokal_mat %>" class="checkbox-image" onclick="toggleCheckbox(this)"> <%= data.Lokal_mat %> x3</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Lv.70 -> Lv.80</th>
+                    <td>
+                        <ul>
+                            <li><img src="<%= data.batu_ascend.Gambar_fragment %>" alt="Fragment" class="checkbox-image" onclick="toggleCheckbox(this)"> Fragment x3</li>
+                            <li><img src="<%= data.Gambar_mat %>" alt="<%= data.Mat_ascend %>" class="checkbox-image" onclick="toggleCheckbox(this)"> <%= data.Mat_ascend %> x3</li>
+                            <li><img src="https://ik.imagekit.io/ypj908auu/img/buildcharacter/material%20icon/mora.png?updatedAt=1721124751432" alt="Mora" class="checkbox-image" onclick="toggleCheckbox(this)"> Mora x20,000</li>
+                            <li><img src="<%= data.gambar_lokalmat %>" alt="<%= data.Lokal_mat %>" class="checkbox-image" onclick="toggleCheckbox(this)"> <%= data.Lokal_mat %> x3</li>
+                        </ul>
+                    </td>
+                </tr>
                 <tr>
                     <th>Lv.80 -> Lv.90</th>
                     <td>
@@ -87,7 +130,9 @@
 
     <footer>
         <p>&copy; 2024 Irminsul Bank. All rights reserved.</p>
+        <a href="#" id="scrollToTop" class="top">&#8593;</a>
     </footer>
+    <script src="Javascript file/scrollbutton.js"></script>
 
     <script>
         function toggleCheckbox(img) {

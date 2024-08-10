@@ -58,12 +58,12 @@ header {
 }
 
 .thank-you-content {
-    max-width: 600px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
 .thank-you img {
-    max-width: 100%;
+    max-width: 22%;
     height: auto;
     margin-top: 30px;
 }

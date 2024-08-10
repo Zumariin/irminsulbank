@@ -5,6 +5,17 @@ const path = require('path')
 require('dotenv').config();
 const PORT = 3000
 
+const substats = {
+    cyno:"Energy Recharge%, CRIT Rate/DMG, Elemental Mastery, ATK%",
+    arlecchino:"CRIT Rate, CRIT DMG, Energy Recharge, ATK%",
+    neuvilette:"HP%, CRIT Rate, CRIT DMG, Energy Recharge, Elemental Mastery",
+    ayaka:"CRIT DMG, Energy Recharge, ATK%, CRIT Rate",
+    wanderer:"CRIT Rate, CRIT DMG, Energy Recharge, ATK%",
+    nahida:"Elemental Mastery, CRIT Rate, CRIT DMG, Energy Recharge",
+    zhongli:"HP%, HP, Energy Recharge",
+    raiden:"Energy Recharge, CRIT DMG, CRIT Rate, ATK%, Elemental Mastery",
+}
+
 const app = express()
     .use(express.static(path.join(__dirname, '..', 'public')))
     .set('view engine', 'ejs')
@@ -19,7 +30,6 @@ const app = express()
         try {
             return res.render('home');
         } catch (error) {
-            console.error('Error fetching data from API:', error);
             return res.status(500).send('Error fetching data');
         }
     })
@@ -27,10 +37,17 @@ const app = express()
         try {
             const response = await axios.get(`http://localhost:3000/api/v1/character/name/${req.params.character}`);
             const data = response.data;
-            console.log(data)
-            return res.render('characterdetail', { data : data.data });
+            const characterSubstats = substats[`${req.params.character}`]
+            return res.render('characterdetail', { data : data.data, valueSubstats: characterSubstats});
         } catch (error) {
-            console.error('Error fetching data from API:', error);
+            return res.status(500).send('Error fetching data');
+        }
+    })
+
+    .get('/login', async (req, res) => {
+        try {
+            return res.render('login');
+        } catch (error) {
             return res.status(500).send('Error fetching data');
         }
     })
@@ -39,7 +56,6 @@ const app = express()
         try {
             return res.render('charactertips');
         } catch (error) {
-            console.error('Error fetching data from API:', error);
             return res.status(500).send('Error fetching data');
         }
     })
@@ -47,7 +63,6 @@ const app = express()
         try {
             return res.render('thankyou');
         } catch (error) {
-            console.error('Error fetching data from API:', error);
             return res.status(500).send('Error fetching data');
         }
     })
@@ -55,7 +70,6 @@ const app = express()
         try {
             return res.render('aboutus');
         } catch (error) {
-            console.error('Error fetching data from API:', error);
             return res.status(500).send('Error fetching data');
         }
     })

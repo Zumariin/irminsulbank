@@ -1,5 +1,5 @@
 .checkbox-image {
-    width: 50px; /* Sesuaikan ukuran sesuai kebutuhan */
+    width: 60px; /* Sesuaikan ukuran sesuai kebutuhan */
     cursor: pointer;
 }
 .checkbox-image.checked {
@@ -125,3 +125,32 @@ color: #fff;
 text-align: center;
 padding: 1rem;
 }
+
+.top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007BFF;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.5s ease;
+  }
+  
+  .top:hover {
+    background-color: #202020;
+    transform: translateY(-2px);
+  }
+  
+  .top:active {
+    background-color: #0026ff;
+    transform: translateY(0);
+  }
+  
+  /* Add animation styles */
+  .top-scroll {
+    animation: scrollTop 1s ease-in-out;
+  }
