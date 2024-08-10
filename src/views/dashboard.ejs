@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Irminsul Bank</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            line-height: 1.6;
+            background: url('images/background.png') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: #31a5e9;
+            color: #ffffff;
+            padding: 1rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style-type: none;
+        }
+
+        nav ul li {
+            margin-left: 1rem;
+        }
+
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #000000;
+        }
+
+        h1 {
+            color: #ffffff;
+            font-size: 3em;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px #31a5e9;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #31435f;
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        .welcome-text {
+            color: #000000;
+            font-size: 1.5em;
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px #ffffff;
+        }
+
+        .header {
+            text-align: center;
+        }
+
+        .container-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .container-table {
+            display: grid;
+            place-content: center;
+        }
+
+        table {
+            width: 100%;
+            max-width: 70vw;
+            border-collapse: collapse;
+            background-color: #ffffff;
+        }
+
+        table, th, td {
+            border: 1px solid #007acc;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #e0f2ff;
+            color: #007acc;
+        }
+
+        td a {
+            color: #005c99;
+            text-decoration: none;
+        }
+
+        td a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">Irminsul Bank Admin</div>
+            <ul>
+                <li><a href="/">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container-content">
+        <div class="header">
+            <h1>Manage Irminsul Bank</h1>
+            <div class="welcome-text">
+                Selamat Datang<br>
+                Dashboard Admin IrminsulBank
+            </div>
+        </div>
+
+        <div class="container-table">
+            <table style="margin-top: 1rem;">
+                <tr>
+                    <th>No</th>
+                    <th>Menu</th>
+                    <th>Keterangan</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><a href="/admin/character-list">Character List</a></td>
+                    <td>Melihat & mengubah gambar dan nama karakter</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><a href="/admin/character">Character</a></td>
+                    <td>Melihat & mengubah isi nama, elemen, senjata dll character</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><a href="/admin/charsup">Charasup</a></td>
+                    <td>Melihat & mengubah isi nama charasup, foto charasup</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td><a href="/admin/artefak">Artefak</a></td>
+                    <td>Melihat & mengubah isi nama artefak, foto artefak</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td><a href="/admin/batu-ascend">Batu Ascend</a></td>
+                    <td>Melihat & mengubah isi tipe batu, gambar tipe batu</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -73,6 +73,17 @@ const app = express()
             return res.status(500).send('Error fetching data');
         }
     })
+
+
+    //dashboard
+
+    .get("/dashboard", (req, res) => {
+        try {
+            return res.render('dashboard');
+        } catch (error) {
+            return res.status(500).send('Error fetching data');
+        }
+    })
     
     
     .use("/api/v1", v1)
