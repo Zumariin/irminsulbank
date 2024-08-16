@@ -10,7 +10,8 @@ datasource db {
 
 model users {
   id       Int    @id @default(autoincrement())
-  username String
+  username String @unique
+  password String @default("irfan31admin77789907zz")
   name     String
 }
 
@@ -19,21 +20,21 @@ model karakter {
   ID_artefak       Int
   ID_charasup      Int
   ID_batu          Int
-  link_avatar      String?
+  link_avatar      String? //ini gambar
   Nama_chara       String
   Mat_ascend       String
-  Gambar_mat       String
-  Lokal_mat        String
-  gambar_lokalmat  String
+  Gambar_mat       String //ini gambar
+  Lokal_mat        String 
+  gambar_lokalmat  String //ini gambar
   Elemen           String
   Senjata1         String
-  Gambar_Senjata1  String
+  Gambar_Senjata1  String //ini gambar
   Senjata2         String
-  Gambar_Senjata2  String
+  Gambar_Senjata2  String //ini gambar
   Senjata3         String
-  Gambar_Senjata3  String
+  Gambar_Senjata3  String //ini gambar
   Senjata4         String
-  Gambar_Senjata4  String
+  Gambar_Senjata4  String //ini gambar
   artefak          Artefak?          @relation(fields: [ID_artefak], references: [id])
   karakter_support Karakter_Support? @relation(fields: [ID_charasup], references: [id])
   batu_ascend      Batu_ascend?     @relation(fields: [ID_batu], references: [id])

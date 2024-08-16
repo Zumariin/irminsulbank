@@ -3,6 +3,10 @@ const v1 = require('./routes/api.route')
 const axios = require('axios')
 const path = require('path')
 require('dotenv').config();
+const bodyParser = require('body-parser');
+const { getAllKarakter } = require('./controllers/karakter.controller');
+const { PrismaClient } = require('@prisma/client')
+const prisma = new PrismaClient()
 const PORT = 3000
 
 const substats = {
@@ -17,7 +21,11 @@ const substats = {
 }
 
 const app = express()
+    .use(express.json())
+    .use(bodyParser.json())
+    .use(bodyParser.urlencoded({ extended: true }))
     .use(express.static(path.join(__dirname, '..', 'public')))
+    .use("/api/v1", v1)
     .set('view engine', 'ejs')
     .set('views', path.join(__dirname, 'views'))
 
@@ -84,9 +92,52 @@ const app = express()
             return res.status(500).send('Error fetching data');
         }
     })
+
+    .get("/dashboard/character-main", async (req, res) => {
+        try {
+            const data = await getAllKarakter(); 
+
+            console.log(data)
+
+            console.log("disini")
+            return res.render('admin_character', { data });
+        } catch (err) {
+            return res.status(500).send('Error fetching data');
+        }
+    })
+
+    .get("/dashboard/admin/tambah-character", async (req, res) => {
+        try {
+            return res.render('add_character');
+        } catch (err) {
+            return res.status(500).send('Error fetching data');
+        }
+    })
+    .get('/dashboard/admin/update-character/:id', async (req, res) => {
+        try {
+            const { id } = req.params;
+            const character = await prisma.karakter.findUnique({
+                where: { id: parseInt(id) },
+                include: {
+                    artefak: true,
+                    karakter_support: true,
+                    batu_ascend: true,
+                },
+            });
+    
+            if (!character) {
+                return res.status(404).send('Character not found');
+            }
+    
+            return res.render('update_character', { character });
+        } catch (err) {
+            console.error('Error fetching character for update:', err);
+            return res.status(500).send('Error fetching data');
+        }
+    })
     
     
-    .use("/api/v1", v1)
+
     .listen(PORT, ()=> {
         console.log(`server running on port 3000`)
     })

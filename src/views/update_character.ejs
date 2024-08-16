@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Irminsul Bank</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            line-height: 1.6;
+            background: url('https://wallpapers.com/images/hd/genshin-impact-beautiful-scenery-2lx7afb1zivx6o1d.jpg') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: #31a5e9;
+            color: #ffffff;
+            padding: 1rem;
+            width: 100%;
+            position: fixed;
+            height: max-content;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style-type: none;
+        }
+
+        nav ul li {
+            margin-left: 1rem;
+        }
+
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #000000;
+        }
+
+        .sidebar {
+            width: 200px;
+            background-color: #e0f2ff;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            height: calc(100vh - 3rem);
+            position: fixed;
+            margin-top: 70px;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 20px;
+        }
+
+        .sidebar ul li a {
+            color: #007acc;
+            text-decoration: none;
+            font-weight: bold;
+            display: block;
+            padding: 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: #cce6ff;
+        }
+
+        .container-content {
+            margin-left: 220px;
+            margin-top: 90px;
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .welcome-text {
+            color: #000000;
+            font-size: 1.5em;
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px #ffffff;
+        }
+
+        form {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        form input[type="text"],
+        form select,
+        form input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        form button[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007acc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        form button[type="submit"]:hover {
+            background-color: #005fa3;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">Irminsul Bank Admin</div>
+            <ul>
+                <li><a href="/">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div style="display: flex;">
+        <div class="sidebar">
+            <ul>
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/dashboard/character-list">Character List</a></li>
+                <li><a href="/dashboard/character-main">Character</a></li>
+                <li><a href="/dashboard/character-sup">Charasup</a></li>
+                <li><a href="/dashboard/artefak">Artefak</a></li>
+                <li><a href="/dashboard/batu-ascend">Batu Ascend</a></li>
+            </ul>
+        </div>
+        
+        <div class="container-content">
+            <h1>Update Character</h1>
+            <form action="/api/v1/update/character/<%= character.id %>" id="characterForm" method="POST" enctype="multipart/form-data">
+                <label for="Nama_chara">Nama Character</label>
+                <input type="text" id="Nama_chara" name="Nama_chara" value="<%= character.Nama_chara %>">
+
+                <label for="Mat_ascend">Mat Ascend</label>
+                <input type="text" id="Mat_ascend" name="Mat_ascend" value="<%= character.Mat_ascend %>">
+
+                <label for="Lokal_mat">Lokal mat</label>
+                <input type="text" id="Lokal_mat" name="Lokal_mat" value="<%= character.Lokal_mat %>">
+
+                <label for="Elemen">Elemen</label>
+                <input type="text" id="Elemen" name="Elemen" value="<%= character.Elemen %>">
+
+                <label for="ID_artefak">ID Artefak</label>
+                <input type="text" id="ID_artefak" name="ID_artefak" value="<%= character.ID_artefak %>">
+
+                <label for="ID_charasup">ID Charasup</label>
+                <input type="text" id="ID_charasup" name="ID_charasup" value="<%= character.ID_charasup %>">
+
+                <label for="ID_batu">ID Batu</label>
+                <input type="text" id="ID_batu" name="ID_batu" value="<%= character.ID_batu %>">
+
+                <label for="link_avatar">Avatar</label>
+                <input type="file" id="link_avatar" name="link_avatar">
+                <img src="<%= character.link_avatar %>" alt="Avatar" style="max-width: 100px; margin-bottom: 10px;">
+
+                <label for="Gambar_mat">Gambar Mat</label>
+                <input type="file" id="Gambar_mat" name="Gambar_mat">
+                <img src="<%= character.Gambar_mat %>" alt="Gambar Mat" style="max-width: 100px; margin-bottom: 10px;">
+
+                <label for="gambar_lokalmat">Gambar Lokal Mat</label>
+                <input type="file" id="gambar_lokalmat" name="gambar_lokalmat">
+                <img src="<%= character.gambar_lokalmat %>" alt="Gambar Lokal Mat" style="max-width: 100px; margin-bottom: 10px;">
+
+                <label for="Senjata1">Nama Senjata 1</label>
+                <input type="text" id="Senjata1" name="Senjata1" value="<%= character.Senjata1 %>">
+
+                <label for="Gambar_Senjata1">Gambar Senjata 1</label>
+                <input type="file" id="Gambar_Senjata1" name="Gambar_Senjata1">
+                <img src="<%= character.Gambar_Senjata1 %>" alt="Gambar Senjata 1" style="max-width: 100px; margin-bottom: 10px;">
+
+                <label for="Senjata2">Nama Senjata 2</label>
+                <input type="text" id="Senjata2" name="Senjata2" value="<%= character.Senjata2 %>">
+
+                <label for="Gambar_Senjata2">Gambar Senjata 2</label>
+                <input type="file" id="Gambar_Senjata2" name="Gambar_Senjata2">
+                <img src="<%= character.Gambar_Senjata2 %>" alt="Gambar Senjata 2" style="max-width: 100px; margin-bottom: 10px;">
+
+                <label for="Senjata3">Nama Senjata 3</label>
+                <input type="text" id="Senjata3" name="Senjata3" value="<%= character.Senjata3 %>">
+
+                <label for="Gambar_Senjata3">Gambar Senjata 3</label>
+                <input type="file" id="Gambar_Senjata3" name="Gambar_Senjata3">
+                <img src="<%= character.Gambar_Senjata3 %>" alt="Gambar Senjata 3" style="max-width: 100px; margin-bottom: 10px;">
+
+                <label for="Senjata4">Nama Senjata 4</label>
+                <input type="text" id="Senjata4" name="Senjata4" value="<%= character.Senjata4 %>">
+
+                <label for="Gambar_Senjata4">Gambar Senjata 4</label>
+                <input type="file" id="Gambar_Senjata4" name="Gambar_Senjata4">
+                <img src="<%= character.Gambar_Senjata4 %>" alt="Gambar Senjata 4" style="max-width: 100px; margin-bottom: 10px;">
+
+                <button type="submit">Submit</button>
+            </form>
+            <div id="statusMessage"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async function() {
+            const token = localStorage.getItem('token');
+    
+            if (!token) {
+                window.location.href = '/';
+                return;
+            }
+    
+            try {
+                const response = await fetch('http://localhost:3000/api/v1/auth/whoami', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+    
+                const result = await response.json();
+    
+                if (!result.message) {
+                    window.location.href = '/'; 
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                window.location.href = '/'; 
+            }
+        });
+
+        document.getElementById('characterForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const formData = new FormData(form);
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    },
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                console.log(result);
+
+                if (result.status) {
+                    alert("Karakter berhasil diperbarui!");
+                } else {
+                    alert("Karakter gagal diperbarui!");
+                }
+            } catch (error) {
+                alert("Terjadi kesalahan, coba lagi nanti.");
+            }
+        });
+    </script>
+    
+</body>
+</html>

@@ -28,6 +28,8 @@
             color: #ffffff;
             padding: 1rem;
             width: 100%;
+            position: fixed;
+            height: max-content;
         }
 
         nav {
@@ -65,7 +67,9 @@
             background-color: #e0f2ff;
             padding: 20px;
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-            height: calc(100vh - 3rem); /* Full height minus the header */
+            height: calc(100vh - 3rem);
+            position: fixed;
+            margin-top: 70px;
         }
 
         .sidebar ul {
@@ -92,6 +96,8 @@
         }
 
         .container-content {
+            margin-left: 220px;
+            margin-top: 90px;
             flex: 1;
             padding: 20px;
             display: flex;
@@ -109,7 +115,79 @@
             text-shadow: 1px 1px 2px #ffffff;
         }
 
+        .character-list-table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #f9f9f9;
+        }
+        
+        .character-list-table th, .character-list-table td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .character-list-table th {
+            background-color: #007acc;
+            color: white;
+        }
 
+        .character-list-table td img {
+            width: 50px;
+            height: auto;
+        }
+
+        .add-button {
+            margin: 20px;
+            margin-right: 0;
+            padding: 10px 20px;
+            background-color: #007acc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 90px;
+        }
+
+        .add-button:hover {
+            background-color: #005fa3;
+        }
+
+        .remove-button {
+            margin: 20px;
+            margin-right: 0;
+            padding: 10px 20px;
+            background-color: #df2323;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 90px;
+        }
+
+        .remove-button:hover {
+            background-color: #ac1f1f;
+        }
+
+        .edit-button {
+            margin: 20px;
+            margin-right: 0;
+            padding: 10px 20px;
+            background-color: #11ac3f;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 90px;
+        }
+
+        .edit-button:hover {
+            background-color: #147030;
+        }
     </style>
 </head>
 <body>
@@ -127,22 +205,44 @@
         <div class="sidebar">
             <ul>
                 <li><a href="/dashboard">Dashboard</a></li>
-                <li><a href="/dashboard/character-list">Character List</a></li>
-                <li><a href="/dashboard/character-main">Character</a></li>
-                <li><a href="/dashboard/character-sup">Charasup</a></li>
-                <li><a href="/dashboard/artefak">Artefak</a></li>
-                <li><a href="/dashboard/batu-ascend">Batu Ascend</a></li>
+                <li><a href="/dashboard/admin/character-list">Character List</a></li>
+                <li><a href="/dashboard/admin/character-main">Character</a></li>
+                <li><a href="/dashboard/admin/character-sup">Charasup</a></li>
+                <li><a href="/dashboard/admin/artefak">Artefak</a></li>
+                <li><a href="/dashboard/admin/batu-ascend">Batu Ascend</a></li>
             </ul>
         </div>
         
         <div class="container-content">
-            <div class="header">
-                <h1>Manage Irminsul Bank</h1>
-                <div class="welcome-text">
-                    Selamat Datang<br>
-                    Dashboard Admin Irminsul Bank
-                </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; width: 80%;">
+                <h1>Data Character List</h1>
+                <a href="/dashboard/admin/tambah-character"><button class="add-button">Tambah</button>
+                </a>
             </div>
+            <table class="character-list-table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Gambar</th>
+                        <th>Nama</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% data.forEach((character, index) => { %>
+                    <tr>
+                        <td><%= index + 1 %></td>
+                        <td><img src="<%= character.link_avatar %>" alt="Gambar Character" width="50"></td>
+                        <td><%= character.Nama_chara %></td>
+                        <td>
+                            <a href="/dashboard/admin/update-character/<%= character.id %>"><button class="edit-button">Edit</button></a>
+                            <button class="remove-button">Delete</button>
+                        </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
         </div>
     
     </div>

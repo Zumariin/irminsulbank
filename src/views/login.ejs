@@ -9,11 +9,48 @@
 <body>
     <div class="login-container">
         <div class="login-header">
-        <div>Login Admin</div>
+            <div>Login Admin</div>
         </div>
         <input type="text" class="login-input" placeholder="Username" id="username">
         <input type="password" class="login-input" placeholder="Password" id="password">
         <button class="login-button" id="login-button">Login</button>
     </div>
+
+    <script>
+        document.getElementById('login-button').addEventListener('click', async function() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch('http://localhost:3000/api/v1/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const result = await response.json();
+                console.log(result);
+
+                if (response.ok) {
+                    // Simpan token ke localStorage
+                    localStorage.setItem('token', result.token);
+
+                    alert('Login berhasil!');
+                    console.log('Token:', result.token);
+
+                    // Redirect ke halaman dashboard
+                    window.location.href = '/dashboard';
+                } else {
+                    // Jika login gagal, tampilkan pesan error
+                    alert(result.message || 'Login gagal!');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Terjadi kesalahan saat login');
+            }
+        });
+    </script>
 </body>
 </html>
