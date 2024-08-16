@@ -1,4 +1,4 @@
-const { getAllKarakter, findCharacter, createKarakter, updateKarakter } = require('../controllers/karakter.controller')
+const { getAllKarakter, findCharacter, createKarakter, updateKarakter, deleteKarakter } = require('../controllers/karakter.controller')
 const { loginController, whoAmIController } = require('../controllers/auth.controller')
 const multer = require('../libs/multer.lib')
 
@@ -20,6 +20,7 @@ const route = require('express').Router()
     
     .post('/create/character', upload, createKarakter)
     .post('/update/character/:id', upload, updateKarakter )
+    .delete('/delete/character/:id', deleteKarakter)
 
 
 module.exports = route

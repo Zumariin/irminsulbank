@@ -272,9 +272,8 @@ const deleteKarakter = async (req, res) => {
         }
 
         await prisma.karakter.delete({
-            where : {
-                id : id
-            }
+            where: { id: parseInt(id) },
+
         })
 
         return res.json( {status : true, message : 'karakter berhasil dihapus'})
