@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Irminsul Bank</title>
     <style>
-        * {
+                * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -28,6 +28,8 @@
             color: #ffffff;
             padding: 1rem;
             width: 100%;
+            position: fixed;
+            height: max-content;
         }
 
         nav {
@@ -65,7 +67,9 @@
             background-color: #e0f2ff;
             padding: 20px;
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-            height: calc(100vh - 3rem); /* Full height minus the header */
+            height: calc(100vh - 3rem);
+            position: fixed;
+            margin-top: 70px;
         }
 
         .sidebar ul {
@@ -92,6 +96,8 @@
         }
 
         .container-content {
+            margin-left: 220px;
+            margin-top: 90px;
             flex: 1;
             padding: 20px;
             display: flex;
@@ -109,7 +115,79 @@
             text-shadow: 1px 1px 2px #ffffff;
         }
 
+        .character-list-table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #f9f9f9;
+        }
+        
+        .character-list-table th, .character-list-table td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .character-list-table th {
+            background-color: #007acc;
+            color: white;
+        }
 
+        .character-list-table td img {
+            width: 50px;
+            height: auto;
+        }
+
+        .add-button {
+            margin: 20px;
+            margin-right: 0;
+            padding: 10px 20px;
+            background-color: #007acc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 90px;
+        }
+
+        .add-button:hover {
+            background-color: #005fa3;
+        }
+
+        .remove-button {
+            margin: 20px;
+            margin-right: 0;
+            padding: 10px 20px;
+            background-color: #df2323;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 90px;
+        }
+
+        .remove-button:hover {
+            background-color: #ac1f1f;
+        }
+
+        .edit-button {
+            margin: 20px;
+            margin-right: 0;
+            padding: 10px 20px;
+            background-color: #11ac3f;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 90px;
+        }
+
+        .edit-button:hover {
+            background-color: #147030;
+        }
     </style>
 </head>
 <body>
@@ -135,48 +213,32 @@
         </div>
         
         <div class="container-content">
-            <div class="header">
-                <h1>Manage Irminsul Bank</h1>
-                <div class="welcome-text">
-                    Selamat Datang<br>
-                    Dashboard Admin Irminsul Bank
-                </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; width: 80%;">
+                <h1>Data Character Support</h1>
             </div>
+            <table class="character-list-table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Foto Charasup</th>
+                        <th>Nama Charasup</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% characterSupport.forEach((character, index) => { %>
+                    <tr>
+                        <td><%= index + 1 %></td>
+                        <td><img src="<%= character.Foto_charasup %>" alt="Foto Charasup" width="50"></td>
+                        <td><%= character.Nama_charasup %></td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
         </div>
-    
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', async function() {
-            const token = localStorage.getItem('token');
-    
-            if (!token) {
-                window.location.href = '/';
-                return;
-            }
-    
-            try {
-                const response = await fetch('<%= apiBaseUrl %>/api/v1/auth/whoami', {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-    
-                const result = await response.json();
-
-                console.log(result)
-
-                console.log(result.data)
-    
-                if (!result.message) {
-                    window.location.href = '/'; 
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                window.location.href = '/'; 
-            }
-        });
+        // Your existing scripts here
     </script>
     
 </body>

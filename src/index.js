@@ -20,6 +20,19 @@ const substats = {
     raiden:"Energy Recharge, CRIT DMG, CRIT Rate, ATK%, Elemental Mastery",
 }
 
+const ENV = process.env.ENV || 'staging'; 
+
+let apiBaseUrl;
+
+if (ENV === 'production') {
+    apiBaseUrl = 'http://103.127.137.138:3772';
+} else if (ENV === 'staging') {
+    apiBaseUrl = 'https://bw2nj1xt-3000.asse.devtunnels.ms';
+} else {
+    apiBaseUrl = 'http://localhost';
+}
+
+
 const app = express()
     .use(express.json())
     .use(bodyParser.json())
@@ -43,18 +56,26 @@ const app = express()
     })
     .get('/character-details/name/:character', async (req, res) => {
         try {
-            const response = await axios.get(`http://localhost:3000/api/v1/character/name/${req.params.character}`);
+
+            console.log(req.params.character)
+            console.log(req.params.character.toLowerCase())
+            const response = await axios.get(`${apiBaseUrl}/api/v1/character/name/${req.params.character}`);
+
+            console.log(response.data)
             const data = response.data;
-            const characterSubstats = substats[`${req.params.character}`]
-            return res.render('characterdetail', { data : data.data, valueSubstats: characterSubstats});
+            const characterSubstats = substats[`${req.params.character.toLowerCase().split(' ')[0]}`]
+            return res.render('characterdetail', { data : data.data, valueSubstats: characterSubstats, apiBaseUrl: apiBaseUrl});
         } catch (error) {
+            console.log(error)
             return res.status(500).send('Error fetching data');
         }
     })
 
     .get('/login', async (req, res) => {
+
+        console.log(apiBaseUrl)
         try {
-            return res.render('login');
+            return res.render('login',  { apiBaseUrl : apiBaseUrl });
         } catch (error) {
             return res.status(500).send('Error fetching data');
         }
@@ -62,7 +83,14 @@ const app = express()
 
     .get('/character-tips', async (req, res) => {
         try {
-            return res.render('charactertips');
+
+            const karakter = await prisma.karakter.findMany({
+                select : {
+                    Nama_chara : true,
+                    link_avatar : true,
+                }
+            })
+            return res.render('charactertips', { karakter });
         } catch (error) {
             return res.status(500).send('Error fetching data');
         }
@@ -87,7 +115,7 @@ const app = express()
 
     .get("/dashboard", (req, res) => {
         try {
-            return res.render('dashboard');
+            return res.render('dashboard', { apiBaseUrl: apiBaseUrl });
         } catch (error) {
             return res.status(500).send('Error fetching data');
         }
@@ -100,7 +128,7 @@ const app = express()
             console.log(data)
 
             console.log("disini")
-            return res.render('admin_character', { data });
+            return res.render('admin_character', { data, apiBaseUrl: apiBaseUrl });
         } catch (err) {
             return res.status(500).send('Error fetching data');
         }
@@ -108,7 +136,7 @@ const app = express()
 
     .get("/dashboard/admin/tambah-character", async (req, res) => {
         try {
-            return res.render('add_character');
+            return res.render('add_character', { apiBaseUrl: apiBaseUrl });
         } catch (err) {
             return res.status(500).send('Error fetching data');
         }
@@ -129,8 +157,43 @@ const app = express()
                 return res.status(404).send('Character not found');
             }
     
-            return res.render('update_character', { character });
+            return res.render('update_character', { character, apiBaseUrl: apiBaseUrl });
         } catch (err) {
+            console.error('Error fetching character for update:', err);
+            return res.status(500).send('Error fetching data');
+        }
+    })
+
+    .get('/dashboard/character-sup', async (req, res) => {
+        try {
+
+            const characterSupport = await prisma.karakter_Support.findMany()
+    
+            return res.render('admin_character_support', { characterSupport, apiBaseUrl: apiBaseUrl });
+
+        } catch (err) {
+            console.error('Error fetching character for update:', err);
+            return res.status(500).send('Error fetching data');
+        }
+    })
+
+    .get('/dashboard/artefak', async (req, res) => {
+        try {
+            const artefak = await prisma.artefak.findMany()
+    
+            return res.render('admin_artefak', { artefak, apiBaseUrl: apiBaseUrl });
+        } catch(err) {
+            console.error('Error fetching character for update:', err);
+            return res.status(500).send('Error fetching data');
+        }
+    })
+
+    .get('/dashboard/batu-ascend', async (req, res) => {
+        try {
+            const batu_ascend = await prisma.batu_ascend.findMany()
+    
+            return res.render('admin_batu_ascend', { batu_ascend, apiBaseUrl: apiBaseUrl });
+        } catch(err) {
             console.error('Error fetching character for update:', err);
             return res.status(500).send('Error fetching data');
         }

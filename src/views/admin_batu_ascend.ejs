@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Irminsul Bank</title>
     <style>
-        * {
+               * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -214,22 +214,38 @@
         
         <div class="container-content">
             <div style="display: flex; justify-content: space-between; align-items: center; width: 80%;">
-                <h1>Data Artefak</h1>
+                <h1>Data Batu Ascend</h1>
             </div>
             <table class="character-list-table">
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Foto Artefak</th>
-                        <th>Nama Artefak</th>
+                        <th>Silver</th>
+                        <th>Fragment</th>
+                        <th>Chunk</th>
+                        <th>Gemstone</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <% artefak.forEach((item, index) => { %>
+                    <% batu_ascend.forEach((item, index) => { %>
                     <tr>
                         <td><%= index + 1 %></td>
-                        <td><img src="<%= item.Foto_artefak %>" alt="Foto Artefak" width="50"></td>
-                        <td><%= item.Nama_artefak %></td>
+                        <td>
+                            <img src="<%= item.Gambar_silver %>" alt="Gambar Silver" width="50">
+                            <div><%= item.Silver %></div>
+                        </td>
+                        <td>
+                            <img src="<%= item.Gambar_fragment %>" alt="Gambar Fragment" width="50">
+                            <div><%= item.Fragment %></div>
+                        </td>
+                        <td>
+                            <img src="<%= item.Gambar_chunk %>" alt="Gambar Chunk" width="50">
+                            <div><%= item.Chunk %></div>
+                        </td>
+                        <td>
+                            <img src="<%= item.Gambar_gemstone %>" alt="Gambar Gemstone" width="50">
+                            <div><%= item.Gemstone %></div>
+                        </td>
                     </tr>
                     <% }) %>
                 </tbody>

@@ -26,7 +26,9 @@ const getAllKarakter = async(req, res) => {
 
 const findCharacter = async(req, res) => {
     try {
-       const nama = req.params.character
+       const nama = String(req.params.character).split(' ')[0]
+
+       console.log(nama)
 
        const result = await prisma.karakter.findFirst({
         where : {

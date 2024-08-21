@@ -170,7 +170,6 @@
         <div class="sidebar">
             <ul>
                 <li><a href="/dashboard">Dashboard</a></li>
-                <li><a href="/dashboard/character-list">Character List</a></li>
                 <li><a href="/dashboard/character-main">Character</a></li>
                 <li><a href="/dashboard/character-sup">Charasup</a></li>
                 <li><a href="/dashboard/artefak">Artefak</a></li>
@@ -258,7 +257,7 @@
             }
     
             try {
-                const response = await fetch('http://localhost:3000/api/v1/auth/whoami', {
+                const response = await fetch('<%= apiBaseUrl %>/api/v1/auth/whoami', {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`

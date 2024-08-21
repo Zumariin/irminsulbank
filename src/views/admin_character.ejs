@@ -205,11 +205,10 @@
         <div class="sidebar">
             <ul>
                 <li><a href="/dashboard">Dashboard</a></li>
-                <li><a href="/dashboard/admin/character-list">Character List</a></li>
-                <li><a href="/dashboard/admin/character-main">Character</a></li>
-                <li><a href="/dashboard/admin/character-sup">Charasup</a></li>
-                <li><a href="/dashboard/admin/artefak">Artefak</a></li>
-                <li><a href="/dashboard/admin/batu-ascend">Batu Ascend</a></li>
+                <li><a href="/dashboard/character-main">Character</a></li>
+                <li><a href="/dashboard/character-sup">Charasup</a></li>
+                <li><a href="/dashboard/artefak">Artefak</a></li>
+                <li><a href="/dashboard/batu-ascend">Batu Ascend</a></li>
             </ul>
         </div>
         
@@ -254,7 +253,7 @@
             }
 
             try {
-                const response = await fetch('http://localhost:3000/api/v1/auth/whoami', {
+                const response = await fetch('<%= apiBaseUrl %>/api/v1/auth/whoami', {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`
@@ -278,7 +277,7 @@
 
                 if (confirm('Are you sure you want to delete this character?')) {
                     try {
-                        const response = await fetch(`/api/v1/delete/character/${id}`, {
+                        const response = await fetch(`https://bw2nj1xt-3000.asse.devtunnels.ms/api/v1/delete/character/${id}`, {
                             method: 'DELETE',
                             headers: {
                                 'Authorization': `Bearer ${localStorage.getItem('token')}`
