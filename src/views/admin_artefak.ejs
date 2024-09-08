@@ -188,14 +188,27 @@
         .edit-button:hover {
             background-color: #147030;
         }
+
+        .container-logo {
+            display: flex;
+            flex-direction: row;
+            }
+
+            .image-logo {
+            width: 50px;
+            height: 50px;
+            margin-right: 12px;
+            }
     </style>
 </head>
 <body>
 
     <header>
-        <nav>
-            <div class="logo">Irminsul Bank Admin</div>
-            <ul>
+        <nav style="display: flex; justify-content: space-between; flex-direction: row; width: 100%;">
+            <div style="display: flex; flex-direction: row; align-items: center;" class="container-logo">
+                <img class="image-logo" src="https://ik.imagekit.io/ypj908auu/img/irminsul%20bank%20logo.png" alt="">
+                <div class="logo">Irminsul Bank</div>
+            </div>            <ul>
                 <li><a href="/">Logout</a></li>
             </ul>
         </nav>
@@ -227,7 +240,7 @@
                 <tbody>
                     <% artefak.forEach((item, index) => { %>
                     <tr>
-                        <td><%= index + 1 %></td>
+                        <td><%= item.id %></td>
                         <td><img src="<%= item.Foto_artefak %>" alt="Foto Artefak" width="50"></td>
                         <td><%= item.Nama_artefak %></td>
                     </tr>

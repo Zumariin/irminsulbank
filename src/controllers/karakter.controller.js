@@ -96,7 +96,6 @@ const createKarakter = async (req, res) => {
         return null;
       };
   
-      // Upload gambar ke ImageKit secara paralel dan dapatkan URL-nya
       const [
         link_avatar,
         Gambar_mat,

@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const { getAllKarakter } = require('./controllers/karakter.controller');
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
-const PORT = 3000
+const PORT = 3772
 
 const substats = {
     cyno:"Energy Recharge%, CRIT Rate/DMG, Elemental Mastery, ATK%",
@@ -20,7 +20,7 @@ const substats = {
     raiden:"Energy Recharge, CRIT DMG, CRIT Rate, ATK%, Elemental Mastery",
 }
 
-const ENV = process.env.ENV || 'staging'; 
+const ENV = process.env.ENV || 'production'; 
 
 let apiBaseUrl;
 
@@ -29,7 +29,7 @@ if (ENV === 'production') {
 } else if (ENV === 'staging') {
     apiBaseUrl = 'https://bw2nj1xt-3000.asse.devtunnels.ms';
 } else {
-    apiBaseUrl = 'http://localhost';
+    apiBaseUrl = 'http://localhost:3772';
 }
 
 
@@ -202,7 +202,7 @@ const app = express()
     
 
     .listen(PORT, ()=> {
-        console.log(`server running on port 3000`)
+        console.log(`server running on port 3772`)
     })
 
 module.exports = app
